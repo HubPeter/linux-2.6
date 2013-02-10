@@ -40,7 +40,11 @@ static inline void atomic_add(int i, atomic_t *v)
 {
 	unsigned long tmp;
 	int result;
-
+	/*
+	#1 load result 
+	#2 inc
+	#3 store and update temp
+	*/
 	__asm__ __volatile__("@ atomic_add\n"
 "1:	ldrex	%0, [%3]\n"
 "	add	%0, %0, %4\n"
